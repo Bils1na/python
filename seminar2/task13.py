@@ -32,6 +32,8 @@ def count_plus_day(all_count_day):
             continue
         else:
             count_day += 1
+    if max_day < count_day:
+        max_day = count_day
     return max_day
 
 try:
