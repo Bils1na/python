@@ -16,8 +16,7 @@ def invert_number(dec_number, format):
         result += str(dec_number % format)
         dec_number //= format
     
-    return result
-
+    return result[::-1]
 
 OCT = 8
 BIN = 2
@@ -26,4 +25,4 @@ number = int(input("Enter number >> "))
 bin_number = invert_number(number, BIN)
 oct_number = invert_number(number, OCT)
 
-print(f"dec = {number}, bin = {bin_number[::-1]}, oct = {oct_number[::-1]}")
+print(f"dec = {number}, bin = {bin_number}, oct = {oct_number}")
