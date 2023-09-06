@@ -180,8 +180,6 @@ row3 = [" ", " ", " "]
 round = int(input("Choose who goes first (1 - you, 0 - bot) >> "))
 
 while True:
-    
-
     # player
     if round == 1:
         player_turn(row1, row2, row3, PLAYER)
