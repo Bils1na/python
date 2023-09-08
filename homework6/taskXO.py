@@ -130,15 +130,14 @@ def check_endgame(field, flag):
         flag = 2
         
     # win    
-    count = 2
     for i in range(len(field)):
         if field[i][0] == field[i][1] and field[i][1] == field[i][2] and " " not in field[i]:
             flag = 1
         if field[0][i] == field[2][i] and field[1][i] == field[2][i] and " " not in field[2][i]:
             flag = 1
-        if field[1][1] == field[0][count] and field[1][1] == field[2][i] and " " not in field[1][1]:
+        if field[1][1] == field[0][2 - i] and field[1][1] == field[2][i] and " " not in field[1][1]:
             flag = 1
-        count -= 1
+        
      
     return flag
 
@@ -147,8 +146,8 @@ PLAYER = "X"
 BOT = "O"
 
 game = 0
-rows = int(input("Enter number of rows >> "))
-columns = int(input("Enter number of columns >> "))
+rows = 3
+columns = 3
 game_field = []
 create_field(rows, columns)
 start = int(input("Choose who goes first (1 - you, 0 - bot) >> "))
