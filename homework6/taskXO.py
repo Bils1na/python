@@ -131,14 +131,13 @@ def check_endgame(field, flag):
         
     # win    
     for i in range(len(field)):
-        if field[i][0] == field[i][1] and field[i][1] == field[i][2] and " " not in field[i]:
+        if field[i][0] == field[i][1] and field[i][1] == field[i][2] and " " not in field[i]: # horizontal
             flag = 1
-        if field[0][i] == field[2][i] and field[1][i] == field[2][i] and " " not in field[2][i]:
+        if field[0][i] == field[2][i] and field[1][i] == field[2][i] and " " not in field[2][i]: # vertical
             flag = 1
-        if field[1][1] == field[0][2 - i] and field[1][1] == field[2][i] and " " not in field[1][1]:
-            flag = 1
-        
-     
+        if field[1][1] == field[0][2 - i] and field[1][1] == field[2][i] and " " not in field[1][1]: # diagonal
+            flag = 1  
+
     return flag
 
 
@@ -157,8 +156,7 @@ if start == 0:
     BOT = "X"
 
 while True:
-    # player
-    if start == 1:
+    if start == 1: # player
         player_turn(rows, columns, game_field, PLAYER)
         game = check_endgame(game_field, game)
         if game == 1:
@@ -170,8 +168,7 @@ while True:
         start = 0
         print("")
     
-    # bot
-    if start == 0:
+    if start == 0: # bot
         bot_turn(rows, columns, game_field, BOT)
         game = check_endgame(game_field, game)
         if game == 1:
