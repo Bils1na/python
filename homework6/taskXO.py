@@ -37,92 +37,35 @@ def bot_turn(r, c, field, char):
     print("Bot turn...")
     while True:
         turn = [randint(1, 3) for i in range(2)]
-            
-        # horizontal
-        if field[0][0] == field[0][1] and field[0][2] == " " and field[0][0] != " ":
-            turn = [1, 3]
-            return draw_field(turn, r, c, field, char)
-        if field[0][0] == field[0][2] and field[0][1] == " " and field[0][0] != " ":
-            turn = [1, 2]
-            return draw_field(turn, r, c, field, char)
-        if field[0][1] == field[0][2] and field[0][0] == " " and field[0][1] != " ":
-            turn = [1, 1]
-            return draw_field(turn, r, c, field, char)
-        
-        if field[1][0] == field[1][1] and field[1][2] == " " and field[1][0] != " ":
-            turn = [2, 3]
-            return draw_field(turn, r, c, field, char)
-        if field[1][0] == field[1][2] and field[1][1] == " " and field[1][0] != " ":
-            turn = [2, 2]
-            return draw_field(turn, r, c, field, char)
-        if field[1][1] == field[1][2] and field[1][0] == " " and field[1][1] != " ":
-            turn = [2, 1]
-            return draw_field(turn, r, c, field, char)
-        
-        if field[2][0] == field[2][1] and field[2][2] == " " and field[2][0] != " ":
-            turn = [3, 3]
-            return draw_field(turn, r, c, field, char)
-        if field[2][0] == field[2][2] and field[2][1] == " " and field[2][0] != " ":
-            turn = [3, 2]
-            return draw_field(turn, r, c, field, char)
-        if field[2][1] == field[2][2] and field[2][0] == " " and field[2][1] != " ":
-            turn = [3, 1]
-            return draw_field(turn, r, c, field, char)
+        print(f"0 {turn}")
 
-        # vertical
-        if field[0][0] == field[2][0] and field[1][0] == " " and field[0][0] != " ":
-            turn = [2, 1]
-            return draw_field(turn, r, c, field, char)
-        if field[0][0] == field[1][0] and field[2][0] == " " and field[0][0] != " ":
-            turn = [3, 1]
-            return draw_field(turn, r, c, field, char)
-        if field[1][0] == field[2][0] and field[0][0] == " " and field[1][0] != " ":
-            turn = [1, 1]
-            return draw_field(turn, r, c, field, char)
-        
-        if field[0][1] == field[2][1] and field[1][1] == " " and field[0][1] != " ":
-            turn = [2, 2]
-            return draw_field(turn, r, c, field, char)
-        if field[0][1] == field[1][1] and field[2][1] == " " and field[0][1] != " ":
-            turn = [3, 2]
-            return draw_field(turn, r, c, field, char)
-        if field[1][1] == field[2][1] and field[0][1] == " " and field[1][1] != " ":
-            turn = [1, 2]
-            return draw_field(turn, r, c, field, char)
-        
-        if field[0][2] == field[2][2] and field[1][2] == " " and field[0][2] != " ":
-            turn = [2, 3]
-            return draw_field(turn, r, c, field, char)
-        if field[0][2] == field[1][2] and field[2][2] == " " and field[0][2] != " ":
-            turn = [3, 3]
-            return draw_field(turn, r, c, field, char)
-        if field[1][2] == field[2][2] and field[0][2] == " " and field[1][2] != " ":
-            turn = [1, 3]
-            return draw_field(turn, r, c, field, char)
-        
-        # diagonal
-        if field[0][0] ==field[1][1] and field[2][2] == " " and field[0][0] != " ":
-            turn = [3, 3]
-            return draw_field(turn, r, c, field, char)
-        if field[0][0] == field[2][2] and field[1][1] == " " and field[0][0] != " ":
-            turn = [2, 2]
-            return draw_field(turn, r, c, field, char)
-        if field[1][1] == field[2][2] and field[0][0] == " " and field[1][1] != " ":
-            turn = [1, 1]
-            return draw_field(turn, r, c, field, char)
+        for i in range(len(field)): # check win
+            for j in range(len(field[i])):
+                if field[i][j] == " ":
+                    field[i][j] = char 
+                    if check_endgame(field, GAME) == 1:
+                        print(f"1 {turn}, {i, j}")
+                        field[i][j] = " "
+                        if field[i][j] == " ":
+                            return draw_field([i+1, j+1], r, c, field, char)
+                    else:
+                        field[i][j] = " "
 
-        if field[0][2] ==field[1][1] and field[2][0] == " " and field[0][2] != " ":
-            turn = [3, 1]
-            return draw_field(turn, r, c, field, char)
-        if field[0][2] == field[2][0] and field[1][1] == " " and field[0][2] != " ":
-            turn = [2, 2]
-            return draw_field(turn, r, c, field, char)
-        if field[1][1] == field[2][0] and field[0][2] == " " and field[1][1] != " ":
-            turn = [1, 3]
-            return draw_field(turn, r, c, field, char)
-        
-        if field[int(turn[0])-1][int(turn[1])-1] == " ":
-            return draw_field(turn, r, c, field, char)              
+        for i in range(len(field)): # check lose
+            for j in range(len(field[i])):
+                if field[i][j] == " ":
+                    field[i][j] = PLAYER
+                    if check_endgame(field, GAME) == 1:
+                        print(f"1 {turn}, {i, j}")
+                        field[i][j] = " "
+                        if field[i][j] == " ":
+                            return draw_field([i+1, j+1], r, c, field, char)
+                    else:
+                        field[i][j] = " "
+
+        if field[int(turn[0])-1][int(turn[1])-1] == " ": # random slot
+            print(f"2 {turn}")
+            return draw_field(turn, r, c, field, char)          
 
 def check_endgame(field, flag):
     if " " not in field[0] and " " not in field[1] and " " not in field[2]: # draw
@@ -141,8 +84,8 @@ def check_endgame(field, flag):
 
 PLAYER = "X"
 BOT = "O"
+GAME = 0
 
-game = 0
 rows = 3
 columns = 3
 game_field = []
@@ -156,11 +99,11 @@ if start == 0:
 while True:
     if start == 1: # player
         player_turn(rows, columns, game_field, PLAYER)
-        game = check_endgame(game_field, game)
-        if game == 1:
+        GAME = check_endgame(game_field, GAME)
+        if GAME == 1:
             print("Player has won! Congratulations!")
             break
-        if game == 2:
+        if GAME == 2:
             print("Game over!")
             break
         start = 0
@@ -168,11 +111,11 @@ while True:
     
     if start == 0: # bot
         bot_turn(rows, columns, game_field, BOT)
-        game = check_endgame(game_field, game)
-        if game == 1:
+        GAME = check_endgame(game_field, GAME)
+        if GAME == 1:
             print("Bot has won! You suck!")
             break
-        if game == 2:
+        if GAME == 2:
             print("Game over!")
             break
         start = 1
