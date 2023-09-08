@@ -35,31 +35,31 @@ def player_turn(r, c, field, char):
 
 def bot_turn(r, c, field, char):
     print("Bot turn...")
+
+    for i in range(len(field)): # check win
+        for j in range(len(field[i])):
+            if field[i][j] == " ":
+                field[i][j] = char 
+                if check_endgame(field, GAME) == 1:
+                    field[i][j] = " "
+                    if field[i][j] == " ":
+                        return draw_field([i+1, j+1], r, c, field, char)
+                else:
+                    field[i][j] = " "
+
+    for i in range(len(field)): # check lose
+        for j in range(len(field[i])):
+            if field[i][j] == " ":
+                field[i][j] = PLAYER
+                if check_endgame(field, GAME) == 1:
+                    field[i][j] = " "
+                    if field[i][j] == " ":
+                        return draw_field([i+1, j+1], r, c, field, char)
+                else:
+                    field[i][j] = " "
+
     while True:
         turn = [randint(1, 3) for i in range(2)]
-
-        for i in range(len(field)): # check win
-            for j in range(len(field[i])):
-                if field[i][j] == " ":
-                    field[i][j] = char 
-                    if check_endgame(field, GAME) == 1:
-                        field[i][j] = " "
-                        if field[i][j] == " ":
-                            return draw_field([i+1, j+1], r, c, field, char)
-                    else:
-                        field[i][j] = " "
-
-        for i in range(len(field)): # check lose
-            for j in range(len(field[i])):
-                if field[i][j] == " ":
-                    field[i][j] = PLAYER
-                    if check_endgame(field, GAME) == 1:
-                        field[i][j] = " "
-                        if field[i][j] == " ":
-                            return draw_field([i+1, j+1], r, c, field, char)
-                    else:
-                        field[i][j] = " "
-
         if field[int(turn[0])-1][int(turn[1])-1] == " ": # random slot
             return draw_field(turn, r, c, field, char)          
 
