@@ -43,85 +43,85 @@ def bot_turn(r1, r2, r3, char):
 
         # horizontal
         if r1[0] == r1[1] and r1[2] == " " and r1[0] != " ":
-            r1[2] = "O"
+            r1[2] = char
             return r1
         if r1[0] == r1[2] and r1[1] == " " and r1[0] != " ":
-            r1[1] = "O"
+            r1[1] = char
             return r1
         if r1[1] == r1[2] and r1[0] == " " and r1[1] != " ":
-            r1[0] = "O"
+            r1[0] = char
             return r1
         
         if r2[0] == r2[1] and r2[2] == " " and r2[0] != " ":
-            r2[2] = "O"
+            r2[2] = char
             return r2
         if r2[0] == r2[2] and r2[1] == " " and r2[0] != " ":
-            r2[1] = "O"
+            r2[1] = char
             return r2
         if r2[1] == r2[2] and r2[0] == " " and r2[1] != " ":
-            r2[0] = "O"
+            r2[0] = char
             return r2
         
         if r3[0] == r3[1] and r3[2] == " " and r3[0] != " ":
-            r3[2] = "O"
+            r3[2] = char
             return r3
         if r3[0] == r3[2] and r3[1] == " " and r3[0] != " ":
-            r3[1] = "O"
+            r3[1] = char
             return r3
         if r3[1] == r3[2] and r3[0] == " " and r3[1] != " ":
-            r3[0] = "O"
+            r3[0] = char
             return r3
 
         # vertical
         if r1[0] == r3[0] and r2[0] == " " and r1[0] != " ":
-            r2[0] = "O"
+            r2[0] = char
             return r2
         if r1[0] == r2[0] and r3[0] == " " and r1[0] != " ":
-            r3[0] = "O"
+            r3[0] = char
             return r3
         if r2[0] == r3[0] and r1[0] == " " and r2[0] != " ":
-            r1[0] = "O"
+            r1[0] = char
             return r1
         
         if r1[1] == r3[1] and r2[1] == " " and r1[1] != " ":
-            r2[1] = "O"
+            r2[1] = char
             return r2
         if r1[1] == r2[1] and r3[1] == " " and r1[1] != " ":
-            r3[1] = "O"
+            r3[1] = char
             return r3
         if r2[1] == r3[1] and r1[1] == " " and r2[1] != " ":
-            r1[1] = "O"
+            r1[1] = char
             return r1
         
         if r1[2] == r3[2] and r2[2] == " " and r1[2] != " ":
-            r2[2] = "O"
+            r2[2] = char
             return r2
         if r1[2] == r2[2] and r3[2] == " " and r1[2] != " ":
-            r3[2] = "O"
+            r3[2] = char
             return r3
         if r2[2] == r3[2] and r1[2] == " " and r2[2] != " ":
-            r1[2] = "O"
+            r1[2] = char
             return r1
         
         # diagonal
         if r1[0] == r2[1] and r3[2] == " " and r1[0] != " ":
-            r3[2] = "O"
+            r3[2] = char
             return r3
         if r1[0] == r3[2] and r2[1] == " " and r1[0] != " ":
-            r2[1] = "O"
+            r2[1] = char
             return r2
         if r2[1] == r3[2] and r1[0] == " " and r2[1] != " ":
-            r1[0] = "O"
+            r1[0] = char
             return r1
 
         if r1[2] == r2[1] and r3[0] == " " and r1[2] != " ":
-            r3[0] = "O"
+            r3[0] = char
             return r3
         if r1[2] == r3[0] and r2[1] == " " and r1[2] != " ":
-            r2[1] = "O"
+            r2[1] = char
             return r2
         if r2[1] == r3[0] and r1[2] == " " and r2[1] != " ":
-            r1[2] = "O"
+            r1[2] = char
             return r1
 
         # random slot
@@ -177,11 +177,15 @@ game = 0
 row1 = [" ", " ", " "]
 row2 = [" ", " ", " "]
 row3 = [" ", " ", " "]
-round = int(input("Choose who goes first (1 - you, 0 - bot) >> "))
+start = int(input("Choose who goes first (1 - you, 0 - bot) >> "))
+
+if start == 0:
+    PLAYER = "O"
+    BOT = "X"
 
 while True:
     # player
-    if round == 1:
+    if start == 1:
         player_turn(row1, row2, row3, PLAYER)
         game_output(row1, row2, row3)
         game = check_endgame(row1, row2, row3, game)
@@ -191,11 +195,11 @@ while True:
         if game == 2:
             print("Game over!")
             break
-        round = 0
+        start = 0
         print("")
     
     # bot
-    if round == 0:
+    if start == 0:
         bot_turn(row1, row2, row3, BOT)
         game_output(row1, row2, row3)
         game = check_endgame(row1, row2, row3, game)
@@ -205,5 +209,5 @@ while True:
         if game == 2:
             print("Game over!")
             break
-        round = 1
+        start = 1
         print("")
