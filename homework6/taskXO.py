@@ -39,93 +39,87 @@ def bot_turn(r, c, field, char):
         turn = [randint(1, 3) for i in range(2)]
             
         # horizontal
-        if r1[0] == r1[1] and r1[2] == " " and r1[0] != " ":
-            r1[2] = "O"
-            return r1
-        if r1[0] == r1[2] and r1[1] == " " and r1[0] != " ":
-            r1[1] = "O"
-            return r1
-        if r1[1] == r1[2] and r1[0] == " " and r1[1] != " ":
-            r1[0] = "O"
-            return r1
+        if field[0][0] == field[0][1] and field[0][2] == " " and field[0][0] != " ":
+            turn = [1, 3]
+            return draw_field(turn, r, c, field, char)
+        if field[0][0] == field[0][2] and field[0][1] == " " and field[0][0] != " ":
+            turn = [1, 2]
+            return draw_field(turn, r, c, field, char)
+        if field[0][1] == field[0][2] and field[0][0] == " " and field[0][1] != " ":
+            turn = [1, 1]
+            return draw_field(turn, r, c, field, char)
         
-        if r2[0] == r2[1] and r2[2] == " " and r2[0] != " ":
-            r2[2] = "O"
-            return r2
-        if r2[0] == r2[2] and r2[1] == " " and r2[0] != " ":
-            r2[1] = "O"
-            return r2
-        if r2[1] == r2[2] and r2[0] == " " and r2[1] != " ":
-            r2[0] = "O"
-            return r2
+        if field[1][0] == field[1][1] and field[1][2] == " " and field[1][0] != " ":
+            turn = [2, 3]
+            return draw_field(turn, r, c, field, char)
+        if field[1][0] == field[1][2] and field[1][1] == " " and field[1][0] != " ":
+            turn = [2, 2]
+            return draw_field(turn, r, c, field, char)
+        if field[1][1] == field[1][2] and field[1][0] == " " and field[1][1] != " ":
+            turn = [2, 1]
+            return draw_field(turn, r, c, field, char)
         
-        if r3[0] == r3[1] and r3[2] == " " and r3[0] != " ":
-            r3[2] = "O"
-            return r3
-        if r3[0] == r3[2] and r3[1] == " " and r3[0] != " ":
-            r3[1] = "O"
-            return r3
-        if r3[1] == r3[2] and r3[0] == " " and r3[1] != " ":
-            r3[0] = "O"
-            return r3
+        if field[2][0] == field[2][1] and field[2][2] == " " and field[2][0] != " ":
+            turn = [3, 3]
+            return draw_field(turn, r, c, field, char)
+        if field[2][0] == field[2][2] and field[2][1] == " " and field[2][0] != " ":
+            turn = [3, 2]
+            return draw_field(turn, r, c, field, char)
+        if field[2][1] == field[2][2] and field[2][0] == " " and field[2][1] != " ":
+            turn = [3, 1]
+            return draw_field(turn, r, c, field, char)
 
         # vertical
-        if r1[0] == r3[0] and r2[0] == " " and r1[0] != " ":
-            r2[0] = "O"
-            return r2
-        if r1[0] == r2[0] and r3[0] == " " and r1[0] != " ":
-            r3[0] = "O"
-            return r3
-        if r2[0] == r3[0] and r1[0] == " " and r2[0] != " ":
-            r1[0] = "O"
-            return r1
+        if field[0][0] == field[2][0] and field[1][0] == " " and field[0][0] != " ":
+            turn = [2, 1]
+            return draw_field(turn, r, c, field, char)
+        if field[0][0] == field[1][0] and field[2][0] == " " and field[0][0] != " ":
+            turn = [3, 1]
+            return draw_field(turn, r, c, field, char)
+        if field[1][0] == field[2][0] and field[0][0] == " " and field[1][0] != " ":
+            turn = [1, 1]
+            return draw_field(turn, r, c, field, char)
         
-        if r1[1] == r3[1] and r2[1] == " " and r1[1] != " ":
-            r2[1] = "O"
-            return r2
-        if r1[1] == r2[1] and r3[1] == " " and r1[1] != " ":
-            r3[1] = "O"
-            return r3
-        if r2[1] == r3[1] and r1[1] == " " and r2[1] != " ":
-            r1[1] = "O"
-            return r1
+        if field[0][1] == field[2][1] and field[1][1] == " " and field[0][1] != " ":
+            turn = [2, 2]
+            return draw_field(turn, r, c, field, char)
+        if field[0][1] == field[1][1] and field[2][1] == " " and field[0][1] != " ":
+            turn = [3, 2]
+            return draw_field(turn, r, c, field, char)
+        if field[1][1] == field[2][1] and field[0][1] == " " and field[1][1] != " ":
+            turn = [1, 2]
+            return draw_field(turn, r, c, field, char)
         
-        if r1[2] == r3[2] and r2[2] == " " and r1[2] != " ":
-            r2[2] = "O"
-            return r2
-        if r1[2] == r2[2] and r3[2] == " " and r1[2] != " ":
-            r3[2] = "O"
-            return r3
-        if r2[2] == r3[2] and r1[2] == " " and r2[2] != " ":
-            r1[2] = "O"
-            return r1
+        if field[0][2] == field[2][2] and field[1][2] == " " and field[0][2] != " ":
+            turn = [2, 3]
+            return draw_field(turn, r, c, field, char)
+        if field[0][2] == field[1][2] and field[2][2] == " " and field[0][2] != " ":
+            turn = [3, 3]
+            return draw_field(turn, r, c, field, char)
+        if field[1][2] == field[2][2] and field[0][2] == " " and field[1][2] != " ":
+            turn = [1, 3]
+            return draw_field(turn, r, c, field, char)
         
         # diagonal
-        if r1[0] == r2[1] and r3[2] == " " and r1[0] != " ":
-            r3[2] = "O"
-            return r3
-        if r1[0] == r3[2] and r2[1] == " " and r1[0] != " ":
-            r2[1] = "O"
-            return r2
-        if r2[1] == r3[2] and r1[0] == " " and r2[1] != " ":
-            r1[0] = "O"
-            return r1
+        if field[0][0] ==field[1][1] and field[2][2] == " " and field[0][0] != " ":
+            turn = [3, 3]
+            return draw_field(turn, r, c, field, char)
+        if field[0][0] == field[2][2] and field[1][1] == " " and field[0][0] != " ":
+            turn = [2, 2]
+            return draw_field(turn, r, c, field, char)
+        if field[1][1] == field[2][2] and field[0][0] == " " and field[1][1] != " ":
+            turn = [1, 1]
+            return draw_field(turn, r, c, field, char)
 
-        if r1[2] == r2[1] and r3[0] == " " and r1[2] != " ":
-            r3[0] = "O"
-            return r3
-        if r1[2] == r3[0] and r2[1] == " " and r1[2] != " ":
-            r2[1] = "O"
-            return r2
-        if r2[1] == r3[0] and r1[2] == " " and r2[1] != " ":
-            r1[2] = "O"
-            return r1
-
-        # random slot
-        if turn[0] == 1:
-            if r1[int(turn[1]) - 1] == " ":
-                r1[int(turn[1]) - 1] = char
-                return r1
+        if field[0][2] ==field[1][1] and field[2][0] == " " and field[0][2] != " ":
+            turn = [3, 1]
+            return draw_field(turn, r, c, field, char)
+        if field[0][2] == field[2][0] and field[1][1] == " " and field[0][2] != " ":
+            turn = [2, 2]
+            return draw_field(turn, r, c, field, char)
+        if field[1][1] == field[2][0] and field[0][2] == " " and field[1][1] != " ":
+            turn = [1, 3]
+            return draw_field(turn, r, c, field, char)
         
         if field[int(turn[0])-1][int(turn[1])-1] == " ":
             return draw_field(turn, r, c, field, char)              
@@ -153,17 +147,21 @@ PLAYER = "X"
 BOT = "O"
 
 game = 0
-row1 = [" ", " ", " "]
-row2 = [" ", " ", " "]
-row3 = [" ", " ", " "]
-round = int(input("Choose who goes first (1 - you, 0 - bot) >> "))
+rows = int(input("Enter number of rows >> "))
+columns = int(input("Enter number of columns >> "))
+game_field = []
+create_field(rows, columns)
+start = int(input("Choose who goes first (1 - you, 0 - bot) >> "))
+
+if start == 0:
+    PLAYER = "O"
+    BOT = "X"
 
 while True:
     # player
-    if round == 1:
-        player_turn(row1, row2, row3, PLAYER)
-        game_output(row1, row2, row3)
-        game = check_endgame(row1, row2, row3, game)
+    if start == 1:
+        player_turn(rows, columns, game_field, PLAYER)
+        game = check_endgame(game_field, game)
         if game == 1:
             print("Player has won! Congratulations!")
             break
@@ -174,10 +172,9 @@ while True:
         print("")
     
     # bot
-    if round == 0:
-        bot_turn(row1, row2, row3, BOT)
-        game_output(row1, row2, row3)
-        game = check_endgame(row1, row2, row3, game)
+    if start == 0:
+        bot_turn(rows, columns, game_field, BOT)
+        game = check_endgame(game_field, game)
         if game == 1:
             print("Bot has won! You suck!")
             break
