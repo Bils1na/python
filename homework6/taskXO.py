@@ -72,7 +72,7 @@ def check_endgame(field, flag):
         elif field[1][1] == field[0][2 - i] and field[1][1] == field[2][i] and " " not in field[1][1]: # diagonal
             flag = 1
         elif " " not in field[0] and " " not in field[1] and " " not in field[2]: # draw
-        flag = 2
+            flag = 2
 
     return flag
 
