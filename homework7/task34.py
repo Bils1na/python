@@ -15,11 +15,5 @@
 
 text = "пара-ра-рам рам-пам-папам па-ра-па-да"
 result = list(map(lambda x: sum(list(map(lambda y: y.count("а"), x))), [i.split("-") for i in text.split()]))
-
-for i in range(1, len(result)-1):
-    if result[i] == result[i-1] and result[i] == result[i+1]:
-        res = "Парам пам-пам"
-    else:
-        res = "Пам парам"
-        
-print(res)
+      
+print(" ".join(list(map(lambda x: "Парам пам-пам" if result[x] == result[x-1] and result[x] == result[x+1] else "Пам парам", range(1, len(result)-1)))))
