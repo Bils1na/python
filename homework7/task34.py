@@ -7,13 +7,13 @@
 # от друга пробелами. Стихотворение  Винни-Пух вбивает в программу с клавиатуры. 
 # В ответе напишите “Парам пам-пам”, если с ритмом все в порядке и “Пам парам”, 
 # если с ритмом все не в порядке
-
 # *Пример:*
-
 # **Ввод:** пара-ра-рам рам-пам-папам па-ра-па-да    
 #     **Вывод:** Парам пам-пам  
 
 text = "пара-ра-рам рам-пам-папам па-ра-па-да"
-result = list(map(lambda x: sum(list(map(lambda y: y.count("а"), x))), [i.split("-") for i in text.split()]))
+result = list(map(lambda x: sum(list(map(lambda y: y.count("а"), x))), 
+                  [i.split("-") for i in text.split()]))
       
-print(" ".join(list(map(lambda x: "Парам пам-пам" if result[x] == result[x-1] and result[x] == result[x+1] else "Пам парам", range(1, len(result)-1)))))
+print(" ".join(list(map(lambda x: "Парам пам-пам" if result[x] == result[x-1] 
+                        and result[x] == result[x+1] else "Пам парам", range(1, len(result)-1)))))
