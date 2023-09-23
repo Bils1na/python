@@ -30,16 +30,19 @@ from random import randint
 from math import pi
 
 def find_farthest_orbit(list_of_orbits):
-    index_gross_orbit = 0
-    res = 0
-    for i in range(len(list_of_orbits)):
-        if list_of_orbits[i][0] != list_of_orbits[i][1]:
-            S = pi * list_of_orbits[i][0] * list_of_orbits[i][1]
-            if S > res:
-                res = S
-                index_gross_orbit = i
+    # index_gross_orbit = 0
+    # res = 0
+    # for i in range(len(list_of_orbits)):
+    #     if list_of_orbits[i][0] != list_of_orbits[i][1]:
+    #         S = pi * list_of_orbits[i][0] * list_of_orbits[i][1]
+    #         if S > res:
+    #             res = S
+    #             index_gross_orbit = i
     
-    return index_gross_orbit
+    # return index_gross_orbit
+    S = list(map(lambda x: pi*x[0]*x[1] if x[0] != x[1] else 0, list_of_orbits))
+    return S.index(max(S))
+
 
 list_orbits = [(1, 3), (2.5, 10), (7, 2), (6, 6), (4, 3)]
 
