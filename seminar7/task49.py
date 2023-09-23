@@ -46,6 +46,8 @@ def find_farthest_orbit(list_of_orbits):
 
 list_orbits = [(1, 3), (2.5, 10), (7, 2), (6, 6), (4, 3)]
 
-print(find_farthest_orbit(list_orbits))
+print(find_farthest_orbit(list_orbits), list_orbits[find_farthest_orbit(list_orbits)])
 
 
+arias = [item[0]*item[1] if item[0] != item[1] else 0 for item in list_orbits]
+print(arias.index(max(arias)))
