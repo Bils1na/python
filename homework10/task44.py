@@ -14,6 +14,6 @@ print()
 one_hot = pd.DataFrame()
 
 for value in data["whoAmI"].unique():
-    one_hot[value] = (data["whoAmI"] == value).astype(bool)
+    one_hot[value] = (data["whoAmI"] == value).astype(int)
 
 print(one_hot)
